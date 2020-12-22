@@ -15,14 +15,15 @@ const images = [
     alt: 'Group of Horses Running',
   },
 ];
-const gallery = document.querySelector('#gallery');
-gallery.classList.add('gallery');
+const galleryMarkup = images.map(({ url, alt }) => {
+  const imagesList = gallery.insertAdjacentHTML(
+    'beforeend',
+    `<li class="gallery-item">
+        <img class='gallery-img' src="${url}" alt="${alt}"</img>
+      </li>`,
+  );
 
-const imagesList = images.map(({ url, alt }) => {
-  return `<li class="gallery-item">
-              <img class="gallery-img" src="${url}" alt="${alt}"></img>
-          </li>`;
+  return imagesList;
 });
 
-gallery.insertAdjacentHTML('beforeend', imagesList);
 console.log(gallery);
