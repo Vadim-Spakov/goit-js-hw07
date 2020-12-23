@@ -15,15 +15,36 @@ const images = [
     alt: 'Group of Horses Running',
   },
 ];
-const galleryMarkup = images.map(({ url, alt }) => {
-  const imagesList = gallery.insertAdjacentHTML(
-    'beforeend',
-    `<li class="gallery-item">
-        <img class='gallery-img' src="${url}" alt="${alt}"</img>
-      </li>`,
-  );
+// const galleryMarkup = images.map(({ url, alt }) => {
+//   const imagesList = gallery.insertAdjacentHTML(
+//     'beforeend',
+//     `<li class="gallery-item">
+//         <img class='gallery-img' src="${url}" alt="${alt}"</img>
+//       </li>`,
+//   );
 
-  return imagesList;
-});
+//   return imagesList;
+// });
 
-console.log(gallery);
+// console.log(gallery);
+
+const galleryMarkup = document.querySelector('#gallery');
+console.log(galleryMarkup);
+galleryMarkup.classList.add('gallery-list');
+function createGallery(arr) {
+  const imagesList = arr.map(image =>{ 
+    const listItemRef = document.createElement('li');
+    listItemRef.insertAdjacentHTML(
+      'beforeend',
+      ` <img src = "${image.url}" alt = "${image.alt}" "width = "360" height="240">`,
+    );
+    listItemRef.setAttribute('class', 'gallery-list__item');
+
+    return listItemRef;
+  });
+
+  return galleryMarkup.append(...imagesList);
+}
+
+console.log(createGallery(images));
+
