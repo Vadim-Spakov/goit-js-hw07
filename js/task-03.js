@@ -28,23 +28,33 @@ const images = [
 
 // console.log(gallery);
 
-const galleryMarkup = document.querySelector('#gallery');
-console.log(galleryMarkup);
-galleryMarkup.classList.add('gallery-list');
-function createGallery(arr) {
-  const imagesList = arr.map(image =>{ 
-    const listItemRef = document.createElement('li');
-    listItemRef.insertAdjacentHTML(
-      'beforeend',
-      ` <img src = "${image.url}" alt = "${image.alt}" "width = "360" height="240">`,
-    );
-    listItemRef.setAttribute('class', 'gallery-list__item');
+// const galleryMarkup = document.querySelector('#gallery');
+// console.log(galleryMarkup);
+// galleryMarkup.classList.add('gallery-list');
+// function createGallery(arr) {
+//   const imagesList = arr.map(image =>{ 
+//     const listItemRef = document.createElement('li');
+//     listItemRef.insertAdjacentHTML(
+//       'beforeend',
+//       ` <img src = "${image.url}" alt = "${image.alt}" "width = "360" height="240">`,
+//     );
+//     listItemRef.setAttribute('class', 'gallery-list__item');
 
-    return listItemRef;
-  });
+//     return listItemRef;
+//   });
 
-  return galleryMarkup.append(...imagesList);
-}
+//   return galleryMarkup.append(...imagesList);
+// }
 
-console.log(createGallery(images));
+// console.log(createGallery(images));
+
+
+const imagesList = images.map(({ url, alt }) => {
+  return `<li class="gallery-item">
+              <img class="gallery-img" src="${url}" alt="${alt}"></img>
+          </li>`;
+});
+
+gallery.insertAdjacentHTML('beforeend', imagesList.join(''));
+console.log(gallery);
 
